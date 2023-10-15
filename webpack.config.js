@@ -6,7 +6,7 @@ module.exports = {
     entry: "./src/entry.js",
     mode: "development",
     devServer: {
-        port: 3003,
+        port: 3004,
     },
     module: {
         rules: [
@@ -45,10 +45,10 @@ module.exports = {
             template: "./public/index.html",
         }),
         new ModuleFederationPlugin({
-            name: "ExampleRemoteProduct",
+            name: "ExampleRemoteDetails",
             filename: "remoteEntry.js",
             exposes: {
-                "./routes": "./src/productRoutes",
+                "./Details": "./src/components/details",
             },
             shared: {
               ...dependencies,
@@ -59,6 +59,10 @@ module.exports = {
               "react-dom": {
                 singleton: true,
                 requiredVersion: dependencies["react-dom"],
+              },
+              "react-router-dom": {
+                singleton: true,
+                requiredVersion: dependencies["react-router-dom"],
               },
               lodash: {
                   singleton: true,
